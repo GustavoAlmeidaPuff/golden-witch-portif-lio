@@ -111,12 +111,15 @@ export default function Viewer3D() {
 
     function resize() {
       const w = holder.clientWidth, h = holder.clientHeight;
+      if (!w || !h) return;
       renderer.setSize(w, h);
       cam.aspect = w / h;
       cam.updateProjectionMatrix();
     }
     resize();
-    window.addEventListener("resize", resize);
+    // acompanha o container, não só a janela: o card muda de largura ao trocar de coluna
+    const ro = new ResizeObserver(resize);
+    ro.observe(holder);
 
     let raf;
     function loop(t) {
@@ -136,7 +139,7 @@ export default function Viewer3D() {
 
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
+      ro.disconnect();
       holder.removeEventListener("pointerdown", onPointerDown);
       holder.removeEventListener("pointermove", onPointerMove);
       holder.removeEventListener("pointerup", onPointerUp);

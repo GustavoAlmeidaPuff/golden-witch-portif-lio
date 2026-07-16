@@ -9,7 +9,6 @@ export default function Hero({ t }) {
         <div className="hero-copy">
           <h1>Golden <span className="gold">Witch</span></h1>
           <p className="tag">{t.tagline}</p>
-          <a className="down" href="#galeria"><span>{t.scroll}</span></a>
         </div>
         <div className="hero-visual">
           <img

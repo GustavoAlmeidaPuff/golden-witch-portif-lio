@@ -52,7 +52,12 @@ export default function App() {
         <Models t={t} />
         <CTA t={t} />
       </main>
-      <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox({ src: "", alt: "" })} />
+      <Lightbox
+        t={t}
+        src={lightbox.src}
+        alt={lightbox.alt}
+        onClose={() => setLightbox({ src: "", alt: "" })}
+      />
     </>
   );
 }
